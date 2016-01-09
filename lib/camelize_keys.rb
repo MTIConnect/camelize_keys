@@ -4,6 +4,7 @@ require 'active_support/core_ext/string/inflections'
 # Maps enumerables with keys to and from camelized and underscore
 module CamelizeKeys
   autoload :EnumerableExtension, 'camelize_keys/enumerable_extension'
+  autoload :ControllerExtension, 'camelize_keys/controller_extension'
   class CollisionError < StandardError; end
 
   def self.is_hashlike? enumerable

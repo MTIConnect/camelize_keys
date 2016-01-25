@@ -38,7 +38,7 @@ module CamelizeKeys
           end
         end
       end
-    elsif deep
+    elsif enumerable.respond_to?(:each) && deep
       enumerable.each do |item|
         transform_enumerable(item, deep: deep, key_transformer: key_transformer) if is_enumerablelike?(item)
       end

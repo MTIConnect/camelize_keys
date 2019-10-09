@@ -29,8 +29,11 @@ module CamelizeKeys
             if raise_collision_errors && enumerable.has_key?(new_key)
               fail CollisionError, "Multiple values have mapped to #{new_key}, cannot complete transformation"
             end
-            enumerable[new_key] = enumerable[key]
-            enumerable.delete key
+            if enumerable.respond_to? :add
+              enumerable.add(new_key, enumerable.delete(key))
+            else
+              enumerable[new_key] = enumerable.delete key
+            end
           end
 
           if deep && is_enumerablelike?(enumerable[new_key])

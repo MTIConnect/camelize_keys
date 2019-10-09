@@ -5,7 +5,7 @@ module CamelizeKeys
     extend ActiveSupport::Concern
 
     included do
-      before_filter do
+      before_action do
         CamelizeKeys.underscore_keys params, deep: true
       end
 
